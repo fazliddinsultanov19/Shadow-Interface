@@ -99,7 +99,7 @@ const Hero: React.FC = () => {
             <span className="block text-slate-900 transition-colors hover:text-white/5 duration-1000">SULTANOV</span>
           </h1>
           <p className="text-slate-700 font-['JetBrains_Mono'] text-[10px] uppercase tracking-[0.5em] mt-8">
-            // STATUS: SYSTEM_OPTIMAL // ARCHIVE_READY
+            {"// STATUS: SYSTEM_OPTIMAL // ARCHIVE_READY"}
           </p>
         </div>
 

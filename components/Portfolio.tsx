@@ -100,7 +100,7 @@ const Portfolio: React.FC = () => {
                   </p>
                   
                   <div className="pt-4 flex items-center gap-3 text-[9px] font-['JetBrains_Mono'] text-slate-400 uppercase tracking-[0.4em] group-hover:text-blue-500 transition-colors">
-                    INITIATE_UPLINK <span className="text-blue-500 group-hover:translate-x-3 transition-transform duration-500">>>></span>
+                    INITIATE_UPLINK <span className="text-blue-500 group-hover:translate-x-3 transition-transform duration-500">{"\u003E\u003E\u003E"}</span>
                   </div>
                 </div>
 
