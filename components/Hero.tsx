@@ -34,7 +34,6 @@ const Hero: React.FC = () => {
       const targetX = mouseRef.current.y * -15; // Vertical mouse moves X rotation
       const targetY = mouseRef.current.x * 15;  // Horizontal mouse moves Y rotation
       
-      // Smoothing factor: higher = more lag/weight
       const lerp = 0.04;
       
       currentRotRef.current.x += (targetX - currentRotRef.current.x) * lerp;
@@ -47,7 +46,6 @@ const Hero: React.FC = () => {
         coreRef.current.style.transform = `rotateX(${currentRotRef.current.x}deg) rotateY(${currentRotRef.current.y}deg) rotateZ(${currentRotRef.current.z}deg)`;
       }
       
-      // Depth parallax: Inner layers rotate slightly more for depth illusion
       if (innerRef.current) {
         innerRef.current.style.transform = `translateZ(50px) rotateX(${currentRotRef.current.x * 0.5}deg) rotateY(${currentRotRef.current.y * 0.5}deg)`;
       }
@@ -70,10 +68,8 @@ const Hero: React.FC = () => {
 
   return (
     <section id="identity" ref={containerRef} className="min-h-screen flex items-center justify-center relative bg-black overflow-hidden select-none">
-      {/* Absolute Black Background Layer */}
       <div className="absolute inset-0 z-0 bg-black" />
       
-      {/* Subtle Digital Particles */}
       <div className="absolute inset-0 pointer-events-none z-[1] opacity-20">
         {[...Array(25)].map((_, i) => (
           <div 
@@ -90,7 +86,6 @@ const Hero: React.FC = () => {
       </div>
 
       <div className="container mx-auto flex flex-col items-center justify-center relative z-10 text-center">
-        {/* Core Title System */}
         <div className="space-y-4 mb-12 animate-reveal-up">
           <div className="flex items-center justify-center gap-4 opacity-40">
             <div className="h-px w-8 bg-blue-500" />
@@ -108,17 +103,14 @@ const Hero: React.FC = () => {
           </p>
         </div>
 
-        {/* ADVANCED ENERGY CORE VISUAL */}
         <div className="relative w-[320px] h-[320px] md:w-[600px] md:h-[600px] perspective-2000">
           <div 
             ref={coreRef}
             className="w-full h-full relative transform-style-3d flex items-center justify-center"
           >
-            {/* Outer Protective Shell (Mechanical Plates) */}
             <div ref={outerRef} className="absolute inset-0 transform-style-3d opacity-20">
               <div className="absolute inset-[10%] border border-slate-900 rounded-full animate-slow-spin" />
               <div className="absolute inset-[15%] border-t border-b border-blue-500/20 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
-              {/* Segmented Plates */}
               {[0, 90, 180, 270].map((deg) => (
                 <div 
                   key={deg}
@@ -130,14 +122,12 @@ const Hero: React.FC = () => {
               ))}
             </div>
 
-            {/* Middle Energy Rings (Reactive Layer) */}
             <div className="absolute inset-[25%] transform-style-3d">
               <div className="absolute inset-0 border border-blue-500/5 rounded-full" 
                    style={{ boxShadow: `0 0 ${20 + proximityGlow * 40}px rgba(59,130,246,${0.05 + proximityGlow * 0.2})` }} />
               <div className="absolute inset-4 border border-blue-500/10 rounded-full animate-[spin_25s_linear_infinite]" />
             </div>
 
-            {/* The Intelligence Nucleus (Inner Core) */}
             <div 
               ref={innerRef}
               className="relative w-28 h-28 md:w-40 md:h-40 bg-black border border-slate-800 rounded-sm flex items-center justify-center shadow-[0_0_100px_rgba(0,0,0,1)] z-10 transform-style-3d transition-all duration-700"
@@ -147,7 +137,6 @@ const Hero: React.FC = () => {
               }}
             >
               <div className="absolute inset-2 border border-blue-500/10 rounded-sm overflow-hidden">
-                {/* Internal energy pulse */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/0 via-blue-500/10 to-blue-500/0 animate-shimmer opacity-30" />
               </div>
               
@@ -155,8 +144,7 @@ const Hero: React.FC = () => {
                 FS
               </div>
 
-              {/* Tactical Readouts (Floating around nucleus) */}
-              <div className="absolute -top-12 -right-12 text-left opacity-30 group-hover:opacity-100 transition-opacity">
+              <div className="absolute -top-12 -right-12 text-left opacity-30">
                 <div className="text-[7px] font-['JetBrains_Mono'] text-blue-400 uppercase mb-1">SYNC_FREQ: 60Hz</div>
                 <div className="flex gap-0.5">
                   {[...Array(5)].map((_, i) => (
@@ -168,7 +156,6 @@ const Hero: React.FC = () => {
               </div>
             </div>
 
-            {/* Wide Orbitals */}
             <div className="absolute w-[500px] h-[500px] border border-blue-500/[0.03] rounded-full rotate-12 pointer-events-none" />
             <div className="absolute w-[500px] h-[500px] border border-blue-500/[0.03] rounded-full -rotate-12 pointer-events-none" />
           </div>
@@ -176,10 +163,9 @@ const Hero: React.FC = () => {
 
         <div className="mt-12 group">
           <a 
-            href="#executive-dossier"
+            href="#archive"
             className="group relative inline-flex items-center gap-8 px-16 py-6 border border-slate-900 bg-black hover:border-blue-500/30 transition-all duration-700 overflow-hidden"
           >
-            {/* Hover Scanline */}
             <div className="absolute inset-0 bg-blue-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="absolute top-0 left-0 w-full h-[1px] bg-blue-500/40 -translate-y-full group-hover:animate-scanline" />
             

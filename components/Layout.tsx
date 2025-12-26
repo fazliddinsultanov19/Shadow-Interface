@@ -37,6 +37,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <button 
               onClick={() => setIsMenuOpen(true)}
               className="flex items-center gap-4 group"
+              aria-label="Open Navigation"
             >
               <div className="text-right hidden sm:block">
                 <div className="font-['JetBrains_Mono'] text-[10px] text-slate-400 uppercase tracking-widest group-hover:text-white transition-colors">System Access</div>
@@ -58,7 +59,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <footer className="py-24 border-t border-slate-900 bg-black">
         <div className="container mx-auto px-8 flex flex-col md:flex-row justify-between items-start gap-12">
           <div className="space-y-6 max-w-sm">
-            <div className="font-['Space_Grotesk'] font-bold text-xl tracking-tighter uppercase">Sultanov Enterprises</div>
+            <div className="font-['Space_Grotesk'] font-bold text-xl tracking-tighter uppercase text-white">Sultanov Enterprises</div>
             <p className="text-slate-500 font-['JetBrains_Mono'] text-[10px] uppercase tracking-widest leading-loose">
               Architect of visual decision systems. Specialized in high-impact branding and strategic design identity.
             </p>
@@ -68,9 +69,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="space-y-4">
               <div className="text-[10px] font-['JetBrains_Mono'] text-blue-500 uppercase tracking-widest">Network</div>
               <div className="flex flex-col space-y-3 text-[10px] font-['JetBrains_Mono'] text-slate-400 uppercase tracking-widest">
-                <a href="https://t.me/fazliddin_designs" target="_blank" className="hover:text-white transition-colors">Telegram</a>
-                <a href="https://www.behance.net/fazliddinsultanov" target="_blank" className="hover:text-white transition-colors">Behance</a>
-                <a href="https://www.pinterest.com/fazliddin_designs/" target="_blank" className="hover:text-white transition-colors">Pinterest</a>
+                <a href="https://t.me/fazliddin_designs" target="_blank" rel="noopener" className="hover:text-white transition-colors">Telegram</a>
+                <a href="https://www.behance.net/fazliddinsultanov" target="_blank" rel="noopener" className="hover:text-white transition-colors">Behance</a>
+                <a href="https://www.pinterest.com/fazliddin_designs/" target="_blank" rel="noopener" className="hover:text-white transition-colors">Pinterest</a>
               </div>
             </div>
             <div className="space-y-4">
