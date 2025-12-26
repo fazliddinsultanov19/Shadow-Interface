@@ -31,7 +31,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           
           <div className="flex items-center space-x-12">
             <div className="hidden lg:block font-['JetBrains_Mono'] text-[9px] text-slate-600 uppercase tracking-[0.3em]">
-              Security Level: <span className="text-blue-500">Tier 1</span>
+              Security Level: <span className="text-blue-500">Tier 1</span> • <span className="text-slate-400">SULTANOV ENTERPRISES</span>
             </div>
             
             <button 
@@ -58,7 +58,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <footer className="py-24 border-t border-slate-900 bg-black">
         <div className="container mx-auto px-8 flex flex-col md:flex-row justify-between items-start gap-12">
           <div className="space-y-6 max-w-sm">
-            <div className="font-['Space_Grotesk'] font-bold text-xl tracking-tighter">FAZLIDDIN SULTANOV</div>
+            <div className="font-['Space_Grotesk'] font-bold text-xl tracking-tighter uppercase">Sultanov Enterprises</div>
             <p className="text-slate-500 font-['JetBrains_Mono'] text-[10px] uppercase tracking-widest leading-loose">
               Architect of visual decision systems. Specialized in high-impact branding and strategic design identity.
             </p>

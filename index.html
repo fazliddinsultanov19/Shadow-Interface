@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,30 +10,66 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --accent: #3b82f6;
+        --accent-muted: rgba(59, 130, 246, 0.2);
+        --bg: #000000;
+        --text: #f8fafc;
+      }
       body {
         margin: 0;
-        background-color: #000;
-        color: #f8fafc;
+        background-color: var(--bg);
+        color: var(--text);
         overflow-x: hidden;
         cursor: none;
       }
+      /* Tactical CRT Overlay */
+      body::after {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.005), rgba(0, 0, 255, 0.01));
+        z-index: 10000;
+        background-size: 100% 2px, 2px 100%;
+        pointer-events: none;
+        opacity: 0.6;
+      }
+      /* Deep Cinematic Vignette */
+      body::before {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: radial-gradient(circle at center, transparent 30%, black 140%);
+        z-index: 9999;
+        pointer-events: none;
+      }
       * {
         scrollbar-width: thin;
-        scrollbar-color: #334155 #000;
+        scrollbar-color: #1e293b #000;
       }
       ::-webkit-scrollbar {
-        width: 4px;
+        width: 3px;
       }
       ::-webkit-scrollbar-track {
         background: #000;
       }
       ::-webkit-scrollbar-thumb {
-        background: #334155;
+        background: #1e293b;
       }
       ::selection {
-        background: #3b82f6;
+        background: var(--accent);
         color: #fff;
       }
+      .perspective-2000 { perspective: 2000px; }
+      .transform-style-3d { transform-style: preserve-3d; }
     </style>
   <script type="importmap">
 {

@@ -6,18 +6,18 @@ interface BootSequenceProps {
 }
 
 const BOOT_LOGS = [
-  "INITIALIZING SECURE KERNEL...",
-  "VERIFYING IDENTITY: FAZLIDDIN SULTANOV",
-  "DECRYPTING PRIVATE ARCHIVES...",
-  "CONNECTING TO GLOBAL NODE: UZBEKISTAN/TAS",
-  "ESTABLISHING SECURE PROTOCOLS...",
-  "LOADING CORE ASSETS...",
-  "ACCESS GRANTED."
+  "INITIALIZING SULTANOV_CORE_ALPHA...",
+  "VERIFYING RSA KEY [2048-BIT]...",
+  "ESTABLISHING SECURE HANDSHAKE: TAS_01",
+  "DECRYPTING ARCHIVAL NODES...",
+  "IDENTITY CONFIRMED: FAZLIDDIN SULTANOV",
+  "SYSTEM STATUS: OPTIMAL",
+  "WELCOME, ARCHITECT."
 ];
 
 const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
-  const [currentLogIdx, setCurrentLogIdx] = useState(0);
+  const [logs, setLogs] = useState<string[]>([]);
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {
@@ -27,46 +27,57 @@ const BootSequence: React.FC<BootSequenceProps> = ({ onComplete }) => {
           clearInterval(timer);
           return 100;
         }
-        return prev + Math.floor(Math.random() * 3) + 1;
+        return prev + Math.floor(Math.random() * 4) + 1;
       });
-    }, 40);
+    }, 30);
 
     return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
-    if (progress === 100) {
-      setTimeout(() => setFinished(true), 500);
-      setTimeout(onComplete, 1200);
+    const logIdx = Math.min(Math.floor((progress / 100) * BOOT_LOGS.length), BOOT_LOGS.length - 1);
+    if (!logs.includes(BOOT_LOGS[logIdx])) {
+      setLogs(prev => [...prev.slice(-3), BOOT_LOGS[logIdx]]);
     }
-    
-    // Cycle logs based on progress
-    const idx = Math.min(Math.floor((progress / 100) * BOOT_LOGS.length), BOOT_LOGS.length - 1);
-    setCurrentLogIdx(idx);
-  }, [progress, onComplete]);
+
+    if (progress === 100) {
+      setTimeout(() => setFinished(true), 800);
+      setTimeout(onComplete, 1600);
+    }
+  }, [progress, onComplete, logs]);
 
   return (
-    <div className={`fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center transition-opacity duration-1000 ${finished ? 'opacity-0 scale-105' : 'opacity-100'}`}>
-      <div className="w-full max-w-md px-6 space-y-8">
-        <div className="space-y-2">
-          <div className="flex justify-between items-end font-['JetBrains_Mono'] text-[10px] text-slate-500 tracking-widest uppercase">
-            <span>System Status: Booting</span>
-            <span className="text-slate-300">{progress}%</span>
+    <div className={`fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center transition-all duration-1000 ${finished ? 'opacity-0 scale-110 blur-3xl' : 'opacity-100'}`}>
+      <div className="w-full max-w-xs space-y-12">
+        <div className="space-y-4">
+          <div className="flex justify-between items-end font-['JetBrains_Mono'] text-[8px] text-blue-500/40 uppercase tracking-[0.4em]">
+            <span>Booting System</span>
+            <span className="text-white">{progress}%</span>
           </div>
-          <div className="h-[2px] w-full bg-slate-900 overflow-hidden relative">
+          <div className="h-[1px] w-full bg-slate-900 overflow-hidden">
             <div 
-              className="absolute top-0 left-0 h-full bg-slate-300 transition-all duration-150 ease-out shadow-[0_0_10px_rgba(255,255,255,0.3)]"
+              className="h-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)] transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
         </div>
 
-        <div className="h-12 flex flex-col items-center">
-          <p className="font-['JetBrains_Mono'] text-[11px] text-blue-400 tracking-widest uppercase text-center animate-pulse">
-            {BOOT_LOGS[currentLogIdx]}
-          </p>
+        <div className="h-20 space-y-2 overflow-hidden">
+          {logs.map((log, i) => (
+            <p key={i} className="font-['JetBrains_Mono'] text-[8px] text-slate-500 uppercase tracking-widest animate-reveal-log">
+              {log}
+            </p>
+          ))}
         </div>
       </div>
+      
+      <style>{`
+        @keyframes reveal-log {
+          from { opacity: 0; transform: translateY(5px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-reveal-log { animation: reveal-log 0.4s ease-out forwards; }
+      `}</style>
     </div>
   );
 };
